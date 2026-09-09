@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOC Portal - Plataforma de Gestión de Incidentes</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Encabezado institucional e identidad de la plataforma -->
+  <header class="site-header">
+    <div class="header-container">
+      <h1>Plataforma SOC - Gestión de Incidentes</h1>
+      <p class="subtitle">Monitoreo y respuesta temprana a eventos de ciberseguridad</p>
+    </div>
+  </header>
+
+  <!-- Navegación principal accesible -->
+  <nav class="site-nav" aria-label="Navegación principal del sistema">
+    <div class="nav-container">
+      <a href="#registro" class="nav-link">Registrar Incidente</a>
+      <a href="#incidentes" class="nav-link">Listado de Incidentes</a>
+      <a href="#detalle" class="nav-link">Detalle del Caso</a>
+      <a href="#ayuda" class="nav-link">Guía y Soporte</a>
+    </div>
+  </nav>
+
+  <!-- Contenedor principal de operaciones -->
+  <main class="main-layout">
+    
+    <!-- Sección 1: Formulario accesible de captura -->
+    <section id="registro" class="card form-section" aria-labelledby="form-heading">
+      <h2 id="form-heading">Registro de Nuevo Incidente</h2>
+      <p class="section-desc">Ingrese los datos técnicos para iniciar el flujo de contención.</p>
+
+      <form action="#" method="POST" novalidate>
+  <!-- Tipo de problema -->
+  <div class="form-group">
+    <label for="tipo-incidente">Tipo de Problema <span class="required" aria-hidden="true">*</span></label>
+    <select id="tipo-incidente" name="tipo_incidente" required aria-describedby="tipo-help">
+      <option value="">-- Seleccione una opción --</option>
+      <option value="virus">Virus o archivo malicioso detectado</option>
+      <option value="phishing">Correo falso o sospechoso (Phishing)</option>
+      <option value="acceso">Sospecha de acceso o contraseña comprometida</option>
+      <option value="red">Servicio web o red lenta / caída</option>
+      <option value="otro">Otro problema de seguridad</option>
+    </select>
+    <small id="tipo-help" class="form-help">Seleccione la categoría que mejor describa la situación.</small>
+  </div>
+
+  <!-- Cuándo ocurrió -->
+  <div class="form-group">
+    <label for="fecha-incidente">Fecha y Hora aproximada <span class="required" aria-hidden="true">*</span></label>
+    <input type="datetime-local" id="fecha-incidente" name="fecha_incidente" required aria-describedby="fecha-help">
+    <small id="fecha-help" class="form-help">Indique cuándo notó el problema o cuándo ocurrió.</small>
+  </div>
+
+  <!-- Nivel de urgencia -->
+  <div class="form-group">
+    <label for="prioridad-incidente">Urgencia / Prioridad <span class="required" aria-hidden="true">*</span></label>
+    <select id="prioridad-incidente" name="prioridad" required aria-describedby="prioridad-help">
+      <option value="">-- Seleccione prioridad --</option>
+      <option value="alta">Alta (Impide trabajar o afecta a varios equipos)</option>
+      <option value="media">Media (Afecta una sola máquina o tarea)</option>
+      <option value="baja">Baja (Duda o incidente leve sin daños)</option>
+    </select>
+    <small id="prioridad-help" class="form-help">Ayuda a determinar qué caso debe revisarse primero.</small>
+  </div>
+
+  <!-- Detalle -->
+  <div class="form-group">
+    <label for="descripcion-incidente">Descripción detallada <span class="required" aria-hidden="true">*</span></label>
+    <textarea id="descripcion-incidente" name="descripcion" rows="4" minlength="30" required aria-describedby="desc-help" placeholder="Cuente qué sucedió, qué pantalla vio o qué comportamiento raro notó..."></textarea>
+    <small id="desc-help" class="form-help">Mínimo 30 letras. Escriba los detalles con la mayor claridad posible.</small>
+  </div>
+
+  <!-- Archivo adjunto -->
+  <div class="form-group">
+    <label for="evidencias">Adjuntar captura o evidencia (Opcional)</label>
+    <input type="file" id="evidencias" name="evidencias" aria-describedby="evidencias-help" accept=".png,.jpg,.jpeg,.pdf,.txt">
+    <small id="evidencias-help" class="form-help">Formatos admitidos: imágenes (.png, .jpg), documentos PDF o texto.</small>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar Reporte de Incidente</button>
+</form>
+    </section>
+
+    <!-- Sección 2: Listado de incidentes recientes -->
+    <section id="incidentes" class="card list-section" aria-labelledby="list-heading">
+      <h2 id="list-heading">Incidentes Recientes</h2>
+      <p class="section-desc">Casos bajo evaluación en el turno actual.</p>
+
+
+
+      <div class="incidents-container">
+        <article class="incident-item priority-high">
+          <div class="incident-meta">
+            <span class="badge badge-high">Crítico</span>
+            <span class="incident-id">INC-2026-089</span>
+          </div>
+          <h3>Acceso anómalo root por SSH</h3>
+          <p class="incident-summary">Múltiples intentos fallidos seguidos de acceso exitoso desde IP extranjera.</p>
+          <time datetime="2026-09-05T08:15:00">05 Sep 2026 - 08:15</time>
+        </article>
+
+        <article class="incident-item priority-medium">
+          <div class="incident-meta">
+            <span class="badge badge-medium">Medio</span>
+            <span class="incident-id">INC-2026-090</span>
+          </div>
+          <h3>Alerta de Ransomware en Endpoint</h3>
+          <p class="incident-summary">EDR aisló la máquina WS-402 por detección de comportamiento de cifrado.</p>
+          <time datetime="2026-09-05T09:40:00">05 Sep 2026 - 09:40</time>
+        </article>
+
+        <article class="incident-item priority-low">
+          <div class="incident-meta">
+            <span class="badge badge-low">Bajo</span>
+            <span class="incident-id">INC-2026-091</span>
+          </div>
+          <h3>Campaña de Phishing Bancario</h3>
+          <p class="incident-summary">Correos con enlaces maliciosos bloqueados en la pasarela de correo.</p>
+          <time datetime="2026-09-05T11:05:00">05 Sep 2026 - 11:05</time>
+        </article>
+        <article class="incident-item priority-high">
+  <div class="incident-meta">
+    <span class="badge badge-high">Alta</span>
+    <span class="incident-id">INC-2026-102</span>
+  </div>
+  <h3>Campaña de Phishing Financiero</h3>
+  <p class="incident-summary">Correos fraudulentos detectados en la bandeja de entrada del personal.</p>
+  <time datetime="2026-09-05T10:30">05 Sep 2026 - 10:30</time>
+</article> 
+
+
+      </div>
+    </section>
+
+    <!-- Sección 3: Vista de detalle -->
+    <section id="detalle" class="card detail-section" aria-labelledby="detail-heading">
+  <h2 id="detail-heading">Detalle del Caso: INC-2026-089</h2>
+  <p class="section-desc">Información ampliada del problema seleccionado.</p>
+  
+  <div class="detail-content">
+    <div class="detail-grid">
+      <div><strong>Estado actual:</strong> En revisión</div>
+      <div><strong>Técnico encargado:</strong> Juan Pérez (Soporte)</div>
+      <div><strong>Equipo afectado:</strong> Computadora de Recepción</div>
+      <div><strong>Causa:</strong> Clic en enlace engañoso</div>
+    </div>
+    <p class="detail-text">
+      <strong>Solución aplicada:</strong> Se desconectó la máquina de internet, se cambió la contraseña del usuario y el antivirus eliminó el archivo sospechoso.
+    </p>
+  </div>
+</section>
+
+    <!-- Barra lateral (aside): Filtros, estado y panel de ayuda -->
+    <aside id="ayuda" class="card aside-section" aria-labelledby="aside-heading">
+  <h2 id="aside-heading">Guía y Soporte</h2>
+  
+  <div class="aside-block">
+    <h3>Resumen de Hoy</h3>
+    <ul class="stats-list">
+      <li>Casos reportados hoy: <strong>3</strong></li>
+      <li>Casos pendientes de revisión: <strong>1</strong></li>
+      <li>Casos resueltos: <strong>2</strong></li>
+    </ul>
+  </div>
+
+  <div class="aside-block help-box">
+    <h3>¿Qué hacer en una emergencia?</h3>
+    <p>Si sospecha que un virus está bloqueando sus archivos o ve movimientos extraños en su pantalla, desconecte de inmediato el cable de red o apague el Wi-Fi y llame a la extensión 101 de Soporte.</p>
+  </div>
+</aside>
+
+  </main>
+
+  <!-- Pie de página institucional -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Plataforma SOC - Centro de Operaciones de Ciberseguridad.</p>
+      <p>Alejandro Perrazo</p>
+    </div>
+  </footer>
+
+</body>
+</html>
