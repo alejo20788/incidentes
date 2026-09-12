@@ -157,13 +157,14 @@
           <button type="submit" class="btn btn-primary">
             Enviar Reporte de Incidente
           </button>
-          <!-- Mensaje de estado dinámico y accesible -->
+
+          <!-- Mensaje de estado dinámico y accesible (ARIA) -->
           <div
             id="mensaje-estado"
             class="form-help"
             role="alert"
             aria-live="polite"
-            style="margin-bottom: 1rem; font-weight: 600"
+            style="margin-top: 1rem; font-weight: 600"
           ></div>
         </form>
       </section>
@@ -177,58 +178,8 @@
         <h2 id="list-heading">Incidentes Recientes</h2>
         <p class="section-desc">Casos bajo evaluación en el turno actual.</p>
 
-        <div class="incidents-container">
-          <article class="incident-item priority-high">
-            <div class="incident-meta">
-              <span class="badge badge-high">Crítico</span>
-              <span class="incident-id">INC-2026-089</span>
-            </div>
-            <h3>Acceso anómalo root por SSH</h3>
-            <p class="incident-summary">
-              Múltiples intentos fallidos seguidos de acceso exitoso desde IP
-              extranjera.
-            </p>
-            <time datetime="2026-09-05T08:15:00">05 Sep 2026 - 08:15</time>
-          </article>
-
-          <article class="incident-item priority-medium">
-            <div class="incident-meta">
-              <span class="badge badge-medium">Medio</span>
-              <span class="incident-id">INC-2026-090</span>
-            </div>
-            <h3>Alerta de Ransomware en Endpoint</h3>
-            <p class="incident-summary">
-              EDR aisló la máquina WS-402 por detección de comportamiento de
-              cifrado.
-            </p>
-            <time datetime="2026-09-05T09:40:00">05 Sep 2026 - 09:40</time>
-          </article>
-
-          <article class="incident-item priority-low">
-            <div class="incident-meta">
-              <span class="badge badge-low">Bajo</span>
-              <span class="incident-id">INC-2026-091</span>
-            </div>
-            <h3>Campaña de Phishing Bancario</h3>
-            <p class="incident-summary">
-              Correos con enlaces maliciosos bloqueados en la pasarela de
-              correo.
-            </p>
-            <time datetime="2026-09-05T11:05:00">05 Sep 2026 - 11:05</time>
-          </article>
-          <article class="incident-item priority-high">
-            <div class="incident-meta">
-              <span class="badge badge-high">Alta</span>
-              <span class="incident-id">INC-2026-102</span>
-            </div>
-            <h3>Campaña de Phishing Financiero</h3>
-            <p class="incident-summary">
-              Correos fraudulentos detectados en la bandeja de entrada del
-              personal.
-            </p>
-            <time datetime="2026-09-05T10:30">05 Sep 2026 - 10:30</time>
-          </article>
-        </div>
+        <!-- Contenedor dinámico: Poblado automáticamente por Fetch y la Vista -->
+        <div class="incidents-container"></div>
       </section>
 
       <!-- Sección 3: Vista de detalle -->
@@ -237,7 +188,7 @@
         class="card detail-section"
         aria-labelledby="detail-heading"
       >
-        <h2 id="detail-heading">Detalle del Caso: INC-2026-089</h2>
+        <h2 id="detail-heading">Detalle del Caso: INC-2026-001</h2>
         <p class="section-desc">
           Información ampliada del problema seleccionado.
         </p>
@@ -297,6 +248,8 @@
         <p>Alejandro Perrazo</p>
       </div>
     </footer>
-    <script src="js/app.js"></script>
+
+    <!-- Carga modular del controlador (Arquitectura MVC) -->
+    <script type="module" src="js/controlador.js"></script>
   </body>
 </html>

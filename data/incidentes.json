@@ -1,0 +1,23 @@
+[
+  {
+    "id": "INC-2026-001",
+    "tipo": "Infección por Malware / Ransomware",
+    "prioridad": "alta",
+    "fecha": "2026-09-10 09:30",
+    "descripcion": "Estación de trabajo contable reporta bloqueo de archivos compartidos y extensión desconocida."
+  },
+  {
+    "id": "INC-2026-002",
+    "tipo": "Campaña de Phishing / Ingeniería Social",
+    "prioridad": "media",
+    "fecha": "2026-09-11 11:15",
+    "descripcion": "Recepción de enlaces falsos simulando la intranet de pagos para capturar credenciales de acceso."
+  },
+  {
+    "id": "INC-2026-003",
+    "tipo": "Acceso no autorizado / Fuerza bruta",
+    "prioridad": "baja",
+    "fecha": "2026-09-12 08:00",
+    "descripcion": "Registros de autenticación fallida repetida contra la VPN institucional fuera del horario hábil."
+  }
+]
