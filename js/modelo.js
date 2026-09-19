@@ -1,29 +1,35 @@
-// Modelo: Gestiona el estado y el consumo de datos
+// js/modelo.js
 export const Modelo = {
   incidentes: [],
 
-  // Consumo con Fetch API y manejo de errores
+  // GET: Solicita datos a la ruta API del servidor Node.js
   async cargarIncidentesIniciales() {
-    try {
-      const respuesta = await fetch("data/incidentes.json");
-      if (!respuesta.ok) {
-        throw new Error(`Error en la solicitud HTTP: ${respuesta.status}`);
-      }
-      const datos = await respuesta.json();
-      this.incidentes = [...datos];
-      return this.incidentes;
-    } catch (error) {
-      console.error("Fallo al consumir incidentes.json:", error);
-      throw error;
+    const res = await fetch('/api/incidentes');
+    if (!res.ok) {
+      throw new Error(`Error en el servidor: ${res.status}`);
     }
+    this.incidentes = await res.json();
+    return [...this.incidentes];
   },
 
   obtenerIncidentes() {
     return [...this.incidentes];
   },
 
-  agregarIncidente(nuevo) {
-    this.incidentes.unshift(nuevo); // Inserta al inicio
-    return nuevo;
-  },
+  // POST: Envía el nuevo incidente por red al servidor
+  async guardarIncidente(nuevo) {
+    const res = await fetch('/api/incidentes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nuevo)
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Error al guardar');
+    }
+
+    this.incidentes.unshift(data);
+    return data;
+  }
 };

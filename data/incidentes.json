@@ -1,5 +1,12 @@
 [
   {
+    "id": "INC-7935",
+    "tipo": "Virus o archivo malicioso detectado",
+    "prioridad": "media",
+    "fecha": "2026-09-18 21:35",
+    "descripcion": "correo sospechoso, en la carpeta llega un correo de una dirección poco común."
+  },
+  {
     "id": "INC-2026-001",
     "tipo": "Infección por Malware / Ransomware",
     "prioridad": "alta",
