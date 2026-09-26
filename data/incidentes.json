@@ -1,5 +1,12 @@
 [
   {
+    "id": "INC-1900",
+    "tipo": "Sospecha de acceso o contraseña comprometida",
+    "prioridad": "alta",
+    "fecha": "2026-09-18 22:01",
+    "descripcion": "Se ha detectado el ingreso errorneo de contraseñas por varias ocasiones"
+  },
+  {
     "id": "INC-7935",
     "tipo": "Virus o archivo malicioso detectado",
     "prioridad": "media",

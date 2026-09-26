@@ -1,4 +1,3 @@
-// Vista: Manipula la interfaz gráfica y comunica estados accesibles
 export const Vista = {
   elementos: {
     formulario: document.querySelector('#registro form'),
@@ -7,45 +6,50 @@ export const Vista = {
     prioridad: document.querySelector('#prioridad-incidente'),
     descripcion: document.querySelector('#descripcion-incidente'),
     contenedorLista: document.querySelector('.incidents-container'),
-    mensajeEstado: document.querySelector('#mensaje-estado')
+    mensajeEstado: document.querySelector('#mensaje-estado'),
+    boton: document.querySelector('#registro form button')
   },
 
-  // Mapear prioridad en español al nombre de clase CSS en inglés
   obtenerClasePrioridad(prioridad) {
-    const mapa = {
-      alta: 'high',
-      media: 'medium',
-      baja: 'low'
-    };
+    const mapa = { alta: 'high', media: 'medium', baja: 'low' };
     return mapa[prioridad.toLowerCase()] || 'low';
   },
 
   renderizarLista(incidentes) {
     if (!this.elementos.contenedorLista) return;
     this.elementos.contenedorLista.innerHTML = '';
-
     if (incidentes.length === 0) {
       this.elementos.contenedorLista.innerHTML = '<p class="text-muted">No existen incidentes registrados.</p>';
       return;
     }
-
-    incidentes.forEach((incidente) => {
-      const claseColor = this.obtenerClasePrioridad(incidente.prioridad);
+    incidentes.forEach((inc) => {
+      const clase = this.obtenerClasePrioridad(inc.prioridad);
       const tarjeta = document.createElement('article');
-      
-      // Asignar clases exactas coincidentes con styles.css
-      tarjeta.className = `incident-item priority-${claseColor}`;
+      tarjeta.className = `incident-item priority-${clase}`;
       tarjeta.innerHTML = `
         <div class="incident-meta">
-          <span class="badge badge-${claseColor}">${incidente.prioridad.toUpperCase()}</span>
-          <span class="incident-id">${incidente.id}</span>
+          <span class="badge badge-${clase}">${inc.prioridad.toUpperCase()}</span>
+          <span class="incident-id">${inc.id}</span>
         </div>
-        <h3>${incidente.tipo}</h3>
-        <p class="incident-summary">${incidente.descripcion}</p>
-        <time datetime="${incidente.fecha}">${incidente.fecha}</time>
+        <h3>${inc.tipo}</h3>
+        <p class="incident-summary">${inc.descripcion}</p>
+        <time datetime="${inc.fecha}">${inc.fecha}</time>
       `;
       this.elementos.contenedorLista.append(tarjeta);
     });
+  },
+
+  // Manejo de Estados Intermedios
+  mostrarCargando(estado) {
+    if(estado) {
+      this.elementos.boton.disabled = true;
+      this.elementos.boton.textContent = 'Procesando...';
+      this.elementos.mensajeEstado.textContent = 'Conectando con el servidor...';
+      this.elementos.mensajeEstado.style.color = '#0284c7';
+    } else {
+      this.elementos.boton.disabled = false;
+      this.elementos.boton.textContent = 'Enviar Reporte de Incidente';
+    }
   },
 
   notificar(mensaje, esError = false) {
@@ -54,7 +58,5 @@ export const Vista = {
     this.elementos.mensajeEstado.style.color = esError ? '#dc2626' : '#16a34a';
   },
 
-  limpiarFormulario() {
-    this.elementos.formulario.reset();
-  }
+  limpiarFormulario() { this.elementos.formulario.reset(); }
 };
