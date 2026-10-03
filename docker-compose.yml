@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api-incidentes:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - incidentes_datos:/app/prisma  # Guarda la base de datos en un volumen persistente
+    environment:
+      - DATABASE_URL=file:./dev.db    # Variable de entorno segura
+      - PORT=3000
+
+volumes:
+  incidentes_datos:

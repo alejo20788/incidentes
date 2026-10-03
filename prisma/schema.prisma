@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Incidente
+model Incidente {
+  id          String   @id @default(uuid())
+  tipo        String
+  prioridad   String
+  fecha       String
+  descripcion String
+  estado      String   @default("ABIERTO")
+  createdAt   DateTime @default(now())
+}
